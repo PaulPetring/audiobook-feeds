@@ -1,4 +1,4 @@
-## honky/audiobook-feeds
+## PaulPetring/audiobook-feeds
 
 This script generates rss and atom feeds from your local file system to server e.g. audio books or other sequential audio files and servers them as a static webserver. Furthermore it offers a small gui to select single folders per podcast. 
 
@@ -9,6 +9,7 @@ By that you can tranfer your audiobooks to your smart phones / tables / internet
 ### other facts
 
 - it offers a simple password protection to prevent copy right issues
+- serves rss and atom feeds for import
 - runs in docker container (see MakeFile and DockerFile)
 - works when placed in subdirs example.com/audio/ (e.g. reg for ssl without wildcard)
 - allows custom theming and uses material design as default theme
