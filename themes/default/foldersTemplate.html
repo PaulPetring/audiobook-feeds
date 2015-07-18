@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>{{GetConfig.Feed_name}} > {{.Parent}}</title>
+
+    <meta name="description" content="{{GetConfig.Feed_description}}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body class="light-blue lighten-3">
+<div class="container light-blue lighten-5">
+    <ul class="collection with-header">
+        <li class="collection-header">
+            <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/" title="home"><i class="small material-icons" style="color:#ffd54f; padding-right:0.5em;">home</i></a>
+            <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/atom/{{.Parent}}" title="atom feed"><i class="small material-icons" style="color:#ff6f00; padding-right:0.5em;">wifi_tethering</i> </a>
+            <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/rss/{{.Parent}}" title="rss feed"><i class="small material-icons" style="color:#ffca28; padding-right:0.5em;">cast_connected</i> </a>
+            <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{.Parent}}/.." title="up"><i class="small material-icons" style="color:#e65100; padding-right:0.5em;">keyboard_arrow_up</i></a>
+        </li>
+
+        <li class="collection-item">
+        <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{.Parent}}/.." title="up"><i class="small material-icons" style="color:#e65100; padding-right:0.5em;">keyboard_arrow_up</i></a>
+        </li>
+
+        {{range .Files}}
+            <li class="collection-item">
+                {{if .IsDir}}
+                <i class="material-icons">folder</i>
+                {{else if .IsMediaFile}}
+                <!--<i class="material-icons">play_arrow</i>-->
+                {{else}}
+                <i class="material-icons">folder</i>
+                {{end}}
+
+<!--
+                {{if .IsAudioFile}}
+                    <audio controls>
+                        <source src="horse.ogg" type="audio/ogg">
+                        <source src="/{{GetConfig.Feed_folders_dir}}/{{.Dir}}/{{.Name}}">
+                    </audio>
+                {{else if .IsVideoFile}}
+                    <video width="320" height="240" controls>
+                        <source src="/{{GetConfig.Feed_folders_dir}}/{{.Dir}}/{{.Name}}">
+                    </video>
+                {{end}}
+-->
+                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{Encode_url .Dir}}/{{Encode_url .Name}}"> {{.Name}} </a>
+                {{if .IsDir}}
+                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/rss/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content"  title="rss feed"><i class="material-icons" style="color:#ffca28; padding-right:0.5em;">cast_connected</i> </a>
+                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/atom/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content"  title="atom feed"><i class="material-icons" style="color:#ff6f00; padding-right:0.5em;">wifi_tethering</i> </a>
+
+                {{else}}
+                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content" title="open"><i class="material-icons"  style="color:#e65100; padding-right:0.5em;">send</i> </a>
+                {{end}}
+
+
+
+            </li>
+        {{end}}
+    </ul>
+</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
+
+</body>
+</html>

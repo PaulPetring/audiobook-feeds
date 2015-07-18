@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<ul>
+    {{range .Files}}
+        <li>
+            <a href="/{{GetConfig.Feed_folders_dir}}/{{.Dir}}/{{.Name}}"> {{.Name}} </a>
+            <a href="/{{GetConfig.Feed_feeds_dir}}/rss/{{.Dir}}/{{.Name}}"  title="rss feed"> rss</a>
+            <a href="/{{GetConfig.Feed_feeds_dir}}/atom/{{.Dir}}/{{.Name}}" title="atom feed"> atom</a>
+
+        </li>
+    {{end}}
+</ul>
+
+</body>
+</html>

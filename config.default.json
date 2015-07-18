@@ -1,0 +1,14 @@
+{
+  "Feed_name":"podify",
+  "Feed_webUrl":"http://127.0.0.1:8088/",
+  "Feed_description":"podify - dynamic audiobook feed",
+  "Feed_author":"E. Xample",
+  "Feed_author_email":"you@example.com",
+  "Feed_feeds_dir":"feeds",
+  "Feed_files_dir":"files",
+  "Feed_folders_dir":"folders",
+  "Feed_theme":"default",
+  "Feed_enableAuth": true,
+  "Feed_username":"user",
+  "Feed_password":"password"
+}
