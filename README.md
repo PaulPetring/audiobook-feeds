@@ -20,7 +20,7 @@ By that you can tranfer your audiobooks to your smart phones / tables / internet
 ![Screenshot](https://github.com/PaulPetring/audiobook-feeds/blob/master/themes/default/default.png?raw=true")
 
 
-- for more information see on my [website](https://defendtheplanet.net/2015/07/18/paulpetringaudiobook-feeds/
+- for more information see on my [website](https://defendtheplanet.net/2015/07/18/paulpetringaudiobook-feeds/)
  
 ### Usage
 
