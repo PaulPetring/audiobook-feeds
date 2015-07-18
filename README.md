@@ -13,11 +13,14 @@ By that you can tranfer your audiobooks to your smart phones / tables / internet
 - works when placed in subdirs example.com/audio/ (e.g. reg for ssl without wildcard)
 - allows custom theming and uses material design as default theme
 - handles encoding of filenames at best effort
-- further information can be found on my [website](https://defendtheplanet.net)
+- further information can be found on my 
 
-### Pictures and tutorials
+### Screenshot
+
+![Screenshot](https://github.com/PaulPetring/audiobook-feeds/blob/master/themes/default/default.png?raw=true")
 
 
+- for more information see on my [website](https://defendtheplanet.net/2015/07/18/paulpetringaudiobook-feeds/
  
 ### Usage
 
