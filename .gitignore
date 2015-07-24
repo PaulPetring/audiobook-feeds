@@ -1,0 +1,8 @@
+files/*
+config.json
+*.mp3
+*.mp4
+*.m4a
+*.mpg
+*.avi
+
