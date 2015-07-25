@@ -10,7 +10,23 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            console.log( "ready!" );
+            $(".playable").click(function(e){
 
+                e.preventDefault();
+
+                if($(this).hasClass("video")) {
+                    $(this).after("<video width='320' height='240' autoplay controls class='secondary-content'><source src='"+$(this).attr("href")+"'></video>").unbind("click");
+                } else {
+                    $(this).after("<audio autoplay controls class='secondary-content'><source src='"+$(this).attr("href")+"'></audio>").unbind("click");
+                    console.log("audio");
+                }
+            })
+        });
+    </script>
 </head>
 <body class="light-blue lighten-3">
 <div class="container light-blue lighten-5">
@@ -23,7 +39,7 @@
         </li>
 
         <li class="collection-item">
-        <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{.Parent}}/.." title="up"><i class="small material-icons" style="color:#e65100; padding-right:0.5em;">keyboard_arrow_up</i></a>
+           {{.Parent}}
         </li>
 
         {{range .Files}}
@@ -36,25 +52,13 @@
                 <i class="material-icons">folder</i>
                 {{end}}
 
-<!--
-                {{if .IsAudioFile}}
-                    <audio controls>
-                        <source src="horse.ogg" type="audio/ogg">
-                        <source src="/{{GetConfig.Feed_folders_dir}}/{{.Dir}}/{{.Name}}">
-                    </audio>
-                {{else if .IsVideoFile}}
-                    <video width="320" height="240" controls>
-                        <source src="/{{GetConfig.Feed_folders_dir}}/{{.Dir}}/{{.Name}}">
-                    </video>
-                {{end}}
--->
                     <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{Encode_url .Dir}}/{{Encode_url .Name}}"> {{.Name}} </a>
                 {{if .IsDir}}
                     <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/rss/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content"  title="rss feed"><i class="material-icons" style="color:#ffca28; padding-right:0.5em;">cast_connected</i> </a>
                     <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_feeds_dir}}/atom/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content"  title="atom feed"><i class="material-icons" style="color:#ff6f00; padding-right:0.5em;">wifi_tethering</i> </a>
 
                 {{else}}
-                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content" title="open"><i class="material-icons"  style="color:#e65100; padding-right:0.5em;">send</i> </a>
+                    <a href="{{GetConfig.Feed_webRoot}}{{GetConfig.Feed_folders_dir}}/{{Encode_url .Dir}}/{{Encode_url .Name}}" class="secondary-content {{if .IsAudioFile}} playable audio {{else if .IsVideoFile}} playable video  {{end}}" title="open"><i class="material-icons"  style="color:#e65100; padding-right:0.5em;">send</i> </a>
                 {{end}}
 
 

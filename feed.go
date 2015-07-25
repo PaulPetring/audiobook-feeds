@@ -28,20 +28,21 @@ var config *AudioFeedConfig
 var tmp *template.Template
 
 type AudioFeedConfig struct {
-	Feed_name         string
-	Feed_webUrl       string
-	Feed_port         int
-	Feed_webRoot      string
-	Feed_description  string
-	Feed_author       string
-	Feed_author_email string
-	Feed_feeds_dir    string
-	Feed_files_dir    string
-	Feed_folders_dir  string
-	Feed_theme        string
-	Feed_enableAuth   bool
-	Feed_username     string
-	Feed_password     string
+	Feed_name                   string
+	Feed_webUrl                 string
+	Feed_port                   int
+	Feed_webRoot                string
+	Feed_description            string
+	Feed_author                 string
+	Feed_author_email           string
+	Feed_feeds_dir              string
+	Feed_files_dir              string
+	Feed_folders_dir            string
+	Feed_theme                  string
+	Feed_enableAuth             bool
+	Feed_username               string
+	Feed_password               string
+	Feed_disableTemplateCaching bool
 }
 
 //reads config.json values and creates one from config.default.json in case there is none
@@ -291,9 +292,8 @@ func folders_handler(w http.ResponseWriter, r *http.Request) {
 	cleanURLPath := r.URL.Path[(len(config.Feed_webRoot+config.Feed_folders_dir) + 0):]
 	fileRoot := http.Dir(getDirNameOfOperation() + "/" + config.Feed_files_dir)
 
-
 	var err error
-	if tmp == nil {
+	if config.Feed_disableTemplateCaching || tmp == nil {
 		tmplTxt, err := ioutil.ReadFile(getDirNameOfOperation() + "/themes/" + config.Feed_theme + "/foldersTemplate.html")
 		if err != nil {
 			fmt.Println("Error reading template file: ", err)
@@ -303,8 +303,8 @@ func folders_handler(w http.ResponseWriter, r *http.Request) {
 		x := template.New("FolderPage")
 		funcs := template.FuncMap{"GetConfig": GetConfig, "Encode_url": encode_url}
 		tmp = template.Must(x.Funcs(funcs).Parse(string(tmplTxt)))
-
 	}
+
 	if err != nil {
 		fmt.Println("Error parsing foldersTemplate.html:")
 		http.Error(w, "Error parsing foldersTemplate.html", 500)

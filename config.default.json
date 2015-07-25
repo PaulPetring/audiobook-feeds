@@ -10,5 +10,6 @@
   "Feed_theme":"default",
   "Feed_enableAuth": true,
   "Feed_username":"user",
-  "Feed_password":"password"
+  "Feed_password":"password",
+  "Feed_disableTemplateCaching" : false
 }
