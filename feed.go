@@ -287,16 +287,10 @@ type EnhancedFileInfo struct {
 }
 
 func folders_handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.URL.Path)
-	fmt.Println(len(config.Feed_webRoot))
-	fmt.Println(len(config.Feed_folders_dir))
-	fmt.Println(len(config.Feed_webRoot) + len(config.Feed_folders_dir))
-	fmt.Println(len(config.Feed_webRoot + config.Feed_folders_dir))
-	cleanURLPath := r.URL.Path[(len(config.Feed_webRoot+config.Feed_folders_dir) + 0):]
 
+	cleanURLPath := r.URL.Path[(len(config.Feed_webRoot+config.Feed_folders_dir) + 0):]
 	fileRoot := http.Dir(getDirNameOfOperation() + "/" + config.Feed_files_dir)
-	fmt.Println("URL PATH: %s", r.URL.Path)
-	fmt.Println("Clean URL PATH: %s", cleanURLPath)
+
 
 	var err error
 	if tmp == nil {
